@@ -1,0 +1,15 @@
+{
+  "name": "very-simple-jvm",
+  "version": "1.0.0",
+  "description": "A very simple JVM written in TypeScript.The purpose is to learn how JVM work.",
+  "main": "index.js",
+  "scripts": {
+    "jvm": "tsc && node dist/index.js"
+  },
+  "author": "Pramoth Suwanpech",
+  "license": "MIT",
+  "devDependencies": {
+    "tslint": "^5.13.1",
+    "typescript": "^3.3.3333"
+  }
+}
