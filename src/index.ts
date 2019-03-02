@@ -57,7 +57,7 @@ export class StackFrame {
 
     run() {
         while (this.instructions[this.pc] != Opcode.RETURN) {
-            this.instructions[this.pc].call(null, this)
+            this.instructions[this.pc].call(undefined, this)
         }
     }
 }
