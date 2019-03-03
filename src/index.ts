@@ -85,12 +85,12 @@ export class Thread {
     }
 }
 
-export class SimpleVM {
+export class VerySimpleVM {
 
     start(): void {
         new Thread().run();
     }
 }
 
-let vm = new SimpleVM();
+let vm = new VerySimpleVM();
 vm.start();
