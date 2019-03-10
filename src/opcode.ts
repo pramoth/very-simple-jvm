@@ -31,4 +31,42 @@ export class Opcode {
     static RETURN = (satckFrame: StackFrame): void => {
         satckFrame.pc++
     }
+    static ISTORE_1 = (satckFrame: StackFrame): void => {
+        satckFrame.localVariables[1] = satckFrame.operandStack.pop()
+        satckFrame.pc++
+    }
+    static ILOAD_1 = (satckFrame: StackFrame): void => {
+        satckFrame.operandStack.push(satckFrame.localVariables[1])
+        satckFrame.pc++
+    }
+    static BIPUSH = (satckFrame: StackFrame): void => {
+        let byteValue = satckFrame.instructions[satckFrame.pc + 1]
+        satckFrame.operandStack.push(byteValue)
+        satckFrame.pc = satckFrame.pc + 2
+    }
+    static IINC = (satckFrame: StackFrame): void => {
+        let index = satckFrame.instructions[satckFrame.pc +1 ]
+        let incrementBy = satckFrame.instructions[satckFrame.pc + 2]
+        satckFrame.localVariables[index] = satckFrame.localVariables[index] + incrementBy
+        satckFrame.pc = satckFrame.pc + 3
+    }
+    static GOTO = (satckFrame: StackFrame): void => {
+        let msb = satckFrame.instructions[satckFrame.pc +1]
+        let lsb = satckFrame.instructions[satckFrame.pc +2]
+        let offset = (msb << 8) + lsb;
+        satckFrame.pc = offset
+    }
+    static IF_ICMPGE = (satckFrame: StackFrame): void => {
+        let operand2 = satckFrame.operandStack.pop();
+        let operand1 = satckFrame.operandStack.pop();
+        if (operand1 >= operand2) {
+            let msb = satckFrame.instructions[satckFrame.pc +1]
+            let lsb = satckFrame.instructions[satckFrame.pc +2]
+            let offset = (msb << 8) + lsb;
+            satckFrame.pc = offset
+        } else {
+            satckFrame.pc = satckFrame.pc +3
+        }
+    }
+
 }

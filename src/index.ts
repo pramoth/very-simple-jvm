@@ -7,12 +7,22 @@ export class Thread {
 
     constructor() {
         let bytecode = [
-            Opcode.ICONST_1,
-            Opcode.ICONST_2,
-            Opcode.IMUL,
             Opcode.ICONST_0,
-            Opcode.IADD,
+            Opcode.ISTORE_1,
+            Opcode.ILOAD_1,
+            Opcode.BIPUSH,
+            10,
+            Opcode.IF_ICMPGE,
+            0,
+            16,
+            Opcode.ILOAD_1,
             Opcode.PRINT,
+            Opcode.IINC,
+            1,
+            1,
+            Opcode.GOTO,
+            0,
+            2,
             Opcode.RETURN]
         this.stackFrame.push(new StackFrame([], bytecode))
     }

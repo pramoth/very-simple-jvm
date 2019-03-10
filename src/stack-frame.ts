@@ -5,7 +5,7 @@ export class StackFrame {
     pc: number = 0
     operandStack: Stack<any> = new Stack()
 
-    constructor(private localVariables: any[], private instructions: any[]) {
+    constructor(public localVariables: any[], public readonly instructions: any[]) {
     }
 
     run() {
