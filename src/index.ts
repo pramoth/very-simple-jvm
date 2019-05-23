@@ -1,30 +1,12 @@
 import {Stack} from "./stack"
-import {Opcode} from "./opcode";
 import {StackFrame} from "./stack-frame";
+import { BYTECODES } from "./demo-bytecode";
 
 export class Thread {
     private stackFrame: Stack<StackFrame> = new Stack<StackFrame>()
 
-    constructor() {
-        let bytecode = [
-            Opcode.ICONST_0,
-            Opcode.ISTORE_1,
-            Opcode.ILOAD_1,
-            Opcode.BIPUSH,
-            10,
-            Opcode.IF_ICMPGE,
-            0,
-            16,
-            Opcode.ILOAD_1,
-            Opcode.PRINT,
-            Opcode.IINC,
-            1,
-            1,
-            Opcode.GOTO,
-            0,
-            2,
-            Opcode.RETURN]
-        this.stackFrame.push(new StackFrame([], bytecode))
+    constructor(private bytecode:any[]) {
+        this.stackFrame.push(new StackFrame([], this.bytecode))
     }
 
     run(): void {
@@ -36,11 +18,10 @@ export class Thread {
 }
 
 export class VerySimpleVM {
-
-    start(): void {
-        new Thread().run();
+    start(bytecode:any[]): void {
+        new Thread(bytecode).run();
     }
 }
 
 let vm = new VerySimpleVM();
-vm.start();
+vm.start(BYTECODES);

@@ -4,11 +4,16 @@
   "description": "A very simple JVM written in TypeScript.The purpose is to learn how JVM work.",
   "main": "index.js",
   "scripts": {
-    "jvm": "tsc && node dist/index.js"
+    "jvm": "tsc && node dist/index.js",
+    "test": "jest",
+    "clean": "rm -r dist"
   },
   "author": "Pramoth Suwanpech",
   "license": "MIT",
   "devDependencies": {
+    "@types/jest": "^24.0.11",
+    "jest": "^24.4.0",
+    "ts-jest": "^24.0.0",
     "tslint": "^5.13.1",
     "typescript": "^3.3.3333"
   }
